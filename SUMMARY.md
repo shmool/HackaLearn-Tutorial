@@ -16,25 +16,11 @@
 * [Features Out of the Box](deploy-with-static-web-apps/out-of-the-box.md)
 * [Authentication Out of the Box](deploy-with-static-web-apps/authentication-out-of-the-box.md)
 * [Working locally](deploy-with-static-web-apps/untitled.md)
+* [Configuration](deploy-with-static-web-apps/configuration.md)
 
 ## Add API
 
----
-
-* [Untitled](untitled-4.md)
-* [Untitled](untitled-3.md)
-* [Untitled](untitled.md)
-* [Untitled](untitled-1.md)
-
 ## Auth & Auth
 
-* [Untitled](auth-and-auth/untitled.md)
-
----
-
-* [Untitled](untitled-2.md)
-
 ## Cosmos DB
-
-* [Untitled](cosmos-db/untitled.md)
 
