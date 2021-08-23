@@ -12,15 +12,12 @@
 ## Deploy with Static Web  Apps
 
 * [Add your app to GitHub](deploy-with-static-web-apps/add-your-app-to-github.md)
-
----
-
-* [Deploy](deploy.md)
-* [Out of the box](out-of-the-box.md)
+* [Create your Static Web App](deploy-with-static-web-apps/deploy.md)
+* [Features Out of the Box](deploy-with-static-web-apps/out-of-the-box.md)
+* [Authentication Out of the Box](deploy-with-static-web-apps/authentication-out-of-the-box.md)
+* [Working locally](deploy-with-static-web-apps/untitled.md)
 
 ## Add API
-
-* [Untitled](add-api/untitled.md)
 
 ---
 
