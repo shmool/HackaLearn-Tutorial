@@ -18,7 +18,11 @@
 * [Working locally](deploy-with-static-web-apps/untitled.md)
 * [Configuration](deploy-with-static-web-apps/configuration.md)
 
-## Add API
+## API with Serverless Functions <a id="add-api"></a>
+
+---
+
+* [Add API](add-api-1.md)
 
 ## Auth & Auth
 
