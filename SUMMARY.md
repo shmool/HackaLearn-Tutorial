@@ -28,3 +28,7 @@
 
 ## Cosmos DB
 
+---
+
+* [Useful Resources](useful-resources.md)
+
