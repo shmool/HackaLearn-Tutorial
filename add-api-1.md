@@ -36,7 +36,7 @@ func init api
 
 You can give it a different name. Just make sure that it aligns with the value of `api_location` in the Static Web App workflow file and update if needed.
 
-You'll be presented with a list of languages that are supported by Functions. You can work with the language you're most comfortable with. In this tutorial we'll use TypeScript. Select `3` for `node` and then `2` for `typescript`. 
+You'll be presented with a list of languages that are supported by Functions. You can work with the language you're most comfortable with. In this tutorial we'll use TypeScript. Select `3 - node` and then `2 - typescript`. 
 
 The project is created. Enter its folder to continue working:
 
@@ -66,19 +66,25 @@ Give a name to the function - preferably describe what the function does. For ex
 
 A folder is created with the name of the function, and inside it two files: `index.ts` and `function.json`. In `function.json` you can see the function configuration - for instance the methods it allows \(defaults are GET and POST\). Here you can configure a different route for the API by adding a `route` configuration. `index.ts` is the function itself and is created with a boilerplate that may receive parameters either as query params \(GET request\) or in the body, and returns text.
 
+## Running the function
+
 To test this function, first run:
 
 ```text
 npm start
 ```
 
-from within the `api` folder. In the terminal you'll see a list of the available endpoints and the methods they support. Now, since the function supports GET requests, you can call it directly from the browser. Browse to `http://localhost:7071/api/GetUserInfo`. You will see the message that is returned by the function. You can add a name as a query param, which will return a different message: `http://localhost:7071/api/GetUserInfo?name=HackaLearn`. 
+from within the `api` folder. This starts the Functions local server. In the terminal you'll see a list of the available endpoints and the methods they support. You can keep this process running while developing your functions and adding new ones. Only if you change the configuration of the functions app itself \(for instance, `local.settings.json`\) you'll need to restart the process \(kill it with `Ctrl+C` and run `npm start` again\). 
+
+Since the function we have just created supports GET requests, you can call it directly from the browser. Browse to `http://localhost:7071/api/GetUserInfo`. You will see the message that is returned by the function. You can add a name as a query param, which will return a different message: `http://localhost:7071/api/GetUserInfo?name=HackaLearn`. 
+
+### The boilerplate function
 
 Explore the boilerplate function in `index.ts`. The arguments you get that you can work with are `(context: Context, req: HttpRequest)`.The function looks for query parameters in case it was a GET request with `req.query.name` and then in the body with `(req.body && req.body.name)`​​​​​​​ . The response is set as `context.res` where you can set up the body, status code, and more. 
 
-With `context.log()`​​​​​​​ you can log messages at run time and see them in the terminal where the Functions local server is running or at application insights in the Portal.
+With `context.log()`​​​​​​​ you can log messages at run time and see them in the terminal where the Functions local server is running or at Application Insights in the Portal.
 
-The boilerplate sets a string \(text\) as the response body \(`context.res`\). If you call this API as is from within the application you'll need to configure the response type since it is not the default JSON. We'll show below how to do that. You change it to return an object or any other type of a valid HTTP response.
+The boilerplate sets a string \(text\) as the response body \(`context.res`\). If you call this API as is from within the application you'll need to configure the response type since it is not the default JSON. We'll show below how to do that. You can change it to return an object or any other type of a valid HTTP response.
 
 ## Calling the API from the app
 
@@ -116,7 +122,7 @@ Restart the SWA CLI with the following command to serve as a proxy both for the 
 swa start http://localhost:4200 --api http://localhost:7071
 ```
 
-
+Any request from within the front-end application should work now. Also, as long as the API supports GET requests, you can access it directly from the browser at `http://localhost:4280/api/<API-route>`. 
 
 
 
@@ -131,4 +137,21 @@ Angular projects come with two environment files by default. You can configure t
 ```
 
 Angular's build command will import the correct environment file.
+
+Another thing you'll need to do is to configure CORS, since you're accessing the endpoint from a different port. Add `"Host"` configuration with `"CORS": "*"` in `local.settings.json` this way:
+
+```text
+{​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+  "IsEncrypted": false,
+  "Values": {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": ""
+  }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​,
+  "Host": {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    "CORS": "*"
+  }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+```
+
+
 

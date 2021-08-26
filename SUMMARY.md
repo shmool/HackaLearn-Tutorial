@@ -24,12 +24,12 @@
 
 * [Add API](add-api-1.md)
 * [Authentication within the API](authentication-within-the-api.md)
-
-## Auth & Auth
+* [Environment Variables](environment-variables.md)
 
 ## Cosmos DB
 
 ---
 
+* [Setting up Cosmos DB](setting-up-cosmos-db.md)
 * [Useful Resources](useful-resources.md)
 

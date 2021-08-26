@@ -8,7 +8,7 @@ This is also a reason to validate data that is received in the API, especially i
 
 Since Azure controls the connection between the client and the API, it can securely attach the user details directly from the session to the header of the API request. To retrieve it, use the following code or a variation of it:
 
-```text
+```typescript
 const header = req.headers['x-ms-client-principal'];
 let clientPrincipal = null;
 if (header) {​​​​​
