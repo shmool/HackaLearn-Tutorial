@@ -84,7 +84,41 @@ The boilerplate sets a string \(text\) as the response body \(`context.res`\). I
 
 When deploying the application with SWA, the API becomes available in the app's URL \(whether it's the URL given by Azure or your custom domain, just like with `/.auth` routes\). You can access it in `https://<your-domain>/api/<API-route>`. For instance, `http://hackalearn.shmool.me/api/GetUserInfo`. Just like the authentication feature, this is available on the deployed application, and can be emulated locally with the SWA CLI.
 
-Since the API and the Client run on different ports, if you want to call it directly from the app you'll need to configure CORS for the Functions app. However, since we're using the SWA CLI which emulates the features that we get when the app is deployed, we can use direct routes without the need to configure CORS. We'll cover first what happens if you don't use the SWA CLI, and then how it works with it.
+Since the API and the Client run on different ports, if you want to call it directly from the app you'll need to configure CORS for the Functions app. However, since we're using the SWA CLI which emulates the features that we get when the app is deployed, we can use direct routes without the need to configure CORS. 
+
+We'll cover first how to work with the SWA CLI which is simpler, then what happens if you don't use the SWA CLI.
+
+### With the SWA CLI
+
+Whenever using the API from within the front-end app, you just need to point to `/api/<API-route>`. For instance, to perform a GET request to `GetUserInfo` with Angular, use the `HttpClient` this way:
+
+```typescript
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  userInfo$ = this.http.get(`/api/GetUserInfo`);
+  
+  // injecting the HttpClient service
+  // note: you may need to import HttpClientModule in your AppModule
+  constructor(private http: HttpClient) { }
+}
+```
+
+You'll need to subscribe to the observable or use the async pipe to extract the data.
+
+Restart the SWA CLI with the following command to serve as a proxy both for the Angular CLI and the Function Core Tools server \(when both `ng serve` and the API's `npm start` are running in other terminals\):
+
+```text
+swa start http://localhost:4200 --api http://localhost:7071
+```
+
+
+
+
 
 ### Without the SWA CLI
 

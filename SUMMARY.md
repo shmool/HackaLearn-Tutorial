@@ -23,6 +23,7 @@
 ---
 
 * [Add API](add-api-1.md)
+* [Authentication within the API](authentication-within-the-api.md)
 
 ## Auth & Auth
 
