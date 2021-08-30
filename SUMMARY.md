@@ -31,5 +31,6 @@
 ---
 
 * [Setting up Cosmos DB](setting-up-cosmos-db.md)
+* [Using the Cosmos DB SDK](using-the-cosmos-db-sdk.md)
 * [Useful Resources](useful-resources.md)
 
