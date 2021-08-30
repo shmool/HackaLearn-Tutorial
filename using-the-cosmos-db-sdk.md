@@ -51,5 +51,49 @@ Now, by passing the database and container name, we can access the data in the c
 ...
 ```
 
-Get items
+Now you can use the container for CRUD operations \(create, read, update, delete\), either by direct SDK calls or with queries. Note the usage of `.read()`, `.fetch()`, `fetchAll()` etc. The response has either a `resource` or `resources` member which holds the actual result.
+
+The following methods are just some of the options available with the SDK.
+
+## Get items
+
+### Get all items
+
+```text
+  const itemsRes = await container.items.readAll().fetchAll();
+  const items = itemsRes.resources;
+```
+
+### Get a single item by ID
+
+To get a specific item, you must provide its ID and the value of the partition key.
+
+```text
+const itemRes = await container.item(itemId, partitionKeyValue).read();
+const item = itemRes.resource;
+```
+
+### Query for items
+
+Use any SQL query that should work on the data. You can test the queries and save them in the data explorer tab in the Portal.
+
+```text
+const groupId = req.query.groupId;
+const query = `SELECT * FROM c WHERE c.groupId = "${groupId}"`;
+
+const groupData = await container.items.query(query).fetchAll();
+// no need to extract 'resources' here
+```
+
+## Create an item
+
+```text
+const item = { ... } // if no id is provided it will be generated
+const itemRes = await container.items.create(item);
+const createdItem = itemRes.resource;
+```
+
+Update an item
+
+
 
